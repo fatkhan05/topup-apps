@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "version:major": "node utils/version.js major",
+    "version:minor": "node utils/version.js minor",
+    "version:patch": "node utils/version.js patch",
+    "version:get": "node utils/version.js get"
   },
   "dependencies": {
     "lucide-react": "^0.562.0",

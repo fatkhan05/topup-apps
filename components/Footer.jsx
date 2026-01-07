@@ -1,8 +1,18 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { Facebook, Twitter, Instagram, Shield } from 'lucide-react';
 
 export default function Footer() {
+  const [version, setVersion] = useState('1.0.0');
+
+  useEffect(() => {
+    // Fetch version from API
+    fetch('/api/version')
+      .then(res => res.json())
+      .then(data => setVersion(data.version))
+      .catch(() => setVersion('1.0.0')); // Fallback to default
+  }, []);
   return (
     <footer className="bg-gray-50 mt-16 border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -68,9 +78,12 @@ export default function Footer() {
           <p className="text-gray-600 text-sm mb-4 md:mb-0">
             © 2024 PayFlow. All rights reserved.
           </p>
-          <div className="flex items-center space-x-2 text-purple-600">
-            <Shield className="w-4 h-4" />
-            <span className="text-sm font-medium">SSL Secured</span>
+          <div className="flex items-center space-x-4">
+            <span className="text-gray-500 text-xs font-mono">V{version}</span>
+            <div className="flex items-center space-x-2 text-purple-600">
+              <Shield className="w-4 h-4" />
+              <span className="text-sm font-medium">SSL Secured</span>
+            </div>
           </div>
         </div>
       </div>
